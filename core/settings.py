@@ -125,9 +125,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-REDIS_IP = os.environ.get('REDIS_IP', '127.0.0.1')
-
-CELERY_BROKER_URL = "redis://{}:6379/15".format(REDIS_IP),
+REDIS_IP = '127.0.0.1'
+CELERY_BROKER_URL = os.environ.get('REDIS_URL', "redis://{}:6379/15".format(REDIS_IP))
 
 # Activate Django-Heroku.
 django_heroku.settings(locals())
