@@ -12,8 +12,6 @@ import yaml
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'core.settings')
-
 os.environ.setdefault("ENV", "PROD")
 
 if os.path.isfile('env.yml'):
