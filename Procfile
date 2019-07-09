@@ -1,2 +1,2 @@
-web: gunicorn sixteen.wsgi --log-file -
+web: gunicorn core.wsgi --log-file -
 main_worker: python manage.py celery worker --beat --loglevel=info
