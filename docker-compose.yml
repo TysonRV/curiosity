@@ -1,12 +1,21 @@
 version: '3'
 
+volumes:
+  pgdata:
+
 services:
-  db:
-    image: postgres:9.6
+  postgres:
+    image: postgres:11.3
+    environment:
+      POSTGRES_USER: curiosity
+      POSTGRES_DB: curiosity
+      POSTGRES_PASS: curiosity
+    volumes:
+      - pgdata:/var/lib/postgresql/data
     ports:
       - "5432:5432"
-#    redis:
-#      image: "redis:alpine"
+  redis:
+    image: "redis:alpine"
   web:
     build: .
     volumes:
@@ -14,11 +23,13 @@ services:
     ports:
       - "8000:8000"
     depends_on:
-      - db
-#      - redis
-#  celery:
-#    build: .
-#    command: celery -A core worker -l info
-#    depends_on:
-#      - db
-#      - redis
+      - postgres
+      - redis
+  celery:
+    build: .
+    command: celery -A core worker -l info
+    depends_on:
+      - postgres
+      - redis
+    volumes:
+      - .:/curiosity
