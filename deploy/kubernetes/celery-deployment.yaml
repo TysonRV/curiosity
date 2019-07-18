@@ -1,0 +1,33 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  name: celery
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      creationTimestamp: null
+    spec:
+      containers:
+      - args:
+        - celery
+        - -A
+        - core
+        - worker
+        - -l
+        - info
+        image: celery
+        name: celery
+        resources: {}
+        volumeMounts:
+        - mountPath: /curiosity
+          name: celery-claim0
+      restartPolicy: Always
+      volumes:
+      - name: celery-claim0
+        persistentVolumeClaim:
+          claimName: celery-claim0
+status: {}
