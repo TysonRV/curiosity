@@ -22,6 +22,20 @@ cloud provider, we will need it in Production or not.
 
 #### - Heroku
 
-Heroku CD will push the changes directly.
+##### - Git
+
+Heroku CD pipeline will push the changes directly.
 
 http://curiosity-wab.herokuapp.com
+
+##### Docker
+
+Make sure you have a working Docker installation (eg. docker ps) and that you’re logged in to Heroku (heroku login).
+
+    heroku container:login
+    
+    heroku container:push web
+    
+    heroku container:release web
+    
+    heroku open
