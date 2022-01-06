@@ -1,6 +1,6 @@
 redis==3.2.1
 Django==2.2.13
-celery==4.3.0
+celery==5.2.2
 django-heroku==0.3.1
 gunicorn==19.9.0
 Fabric3==1.14.post1
